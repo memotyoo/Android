@@ -48,10 +48,6 @@ public class Main extends Activity {
     // アプリ情報取得タスク
     private AsyncTask<Void, Void, Void> mAppInfoTask;
 
-    /*
-     * (非 Javadoc)
-     * @see android.app.Activity#onCreate(android.os.Bundle)
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,10 +61,6 @@ public class Main extends Activity {
 
     }
 
-    /*
-     * (非 Javadoc)
-     * @see android.app.Activity#onResume()
-     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -77,10 +69,6 @@ public class Main extends Activity {
 
             private ArrayList<AppInfo> mAiList;
 
-            /*
-             * (非 Javadoc)
-             * @see android.os.AsyncTask#onPreExecute()
-             */
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -98,15 +86,11 @@ public class Main extends Activity {
                 mAiList = new ArrayList<Main.AppInfo>();
             }
 
-            /*
-             * (非 Javadoc)
-             * @see android.os.AsyncTask#doInBackground(Params[])
-             */
             @Override
             protected Void doInBackground(Void... params) {
 
                 final List<ApplicationInfo> aiList = mPm.getInstalledApplications(0);
-                for (ApplicationInfo o : aiList) {
+                for (final ApplicationInfo o : aiList) {
                     if ((o.flags & ApplicationInfo.FLAG_SYSTEM) == 1
                             || (o.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) == 1) {
                         mAiList.add(new AppInfo(o));
@@ -114,6 +98,7 @@ public class Main extends Activity {
                 }
 
                 Collections.sort(mAiList, new Comparator<AppInfo>() {
+                    @Override
                     public int compare(AppInfo lhs, AppInfo rhs) {
                         // 0：arg1 = arg2
                         // 1 : arg1 > arg2
@@ -133,10 +118,6 @@ public class Main extends Activity {
                 return null;
             }
 
-            /*
-             * (非 Javadoc)
-             * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-             */
             @Override
             protected void onPostExecute(Void result) {
                 super.onPostExecute(result);
@@ -158,10 +139,6 @@ public class Main extends Activity {
 
     }
 
-    /*
-     * (非 Javadoc)
-     * @see android.app.Activity#onPause()
-     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -173,12 +150,8 @@ public class Main extends Activity {
     private static final int MODE_UNINSTALL = 1;
     private static final int MODE_LAUNCHER = 2;
 
-    private static final int MENU_ID_MENU1 = (Menu.FIRST + 1);
+    private static final int MENU_ID_MENU1 = Menu.FIRST + 1;
 
-    /*
-     * (非 Javadoc)
-     * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, MENU_ID_MENU1, Menu.NONE, "表示");
@@ -187,10 +160,6 @@ public class Main extends Activity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    /*
-     * (非 Javadoc)
-     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean ret = true;
@@ -213,8 +182,8 @@ public class Main extends Activity {
      */
     private class AppInfoAdapter extends ArrayAdapter<AppInfo> {
 
-        private List<AppInfo> mAiList;
-        private LayoutInflater mInflater;
+        private final List<AppInfo> mAiList;
+        private final LayoutInflater mInflater;
 
         /**
          * コンストラクタ。
@@ -230,11 +199,6 @@ public class Main extends Activity {
             mAiList = objects;
         }
 
-        /*
-         * (非 Javadoc)
-         * @see android.widget.ArrayAdapter#getView(int, android.view.View,
-         * android.view.ViewGroup)
-         */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -249,7 +213,7 @@ public class Main extends Activity {
             final View root = v;
 
             // 表示すべきデータの取得
-            final AppInfo ai = (AppInfo) mAiList.get(position);
+            final AppInfo ai = mAiList.get(position);
 
             if (ai != null) {
                 // アイコン
@@ -291,6 +255,7 @@ public class Main extends Activity {
                 final TableLayout detail = (TableLayout) root.findViewById(R.id.detail);
                 final LinearLayout llTitle = (LinearLayout) v.findViewById(R.id.title);
                 llTitle.setOnClickListener(new OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         if (detail != null) {
                             if (detail.getVisibility() == View.VISIBLE) {
@@ -314,10 +279,6 @@ public class Main extends Activity {
             return v;
         }
 
-        /*
-         * (非 Javadoc)
-         * @see android.widget.ArrayAdapter#getCount()
-         */
         @Override
         public int getCount() {
             if (mAiList == null) {
@@ -337,7 +298,7 @@ public class Main extends Activity {
         private static final String ZERO_SIZE = "0 KB";
         private static final String MARKET_URL = "http://market.android.com/search?q=";
 
-        private Drawable mIcon;
+        private final Drawable mIcon;
         private String mAppName = "";
         private String mPackageName = "";
         private String mSourceDir = "";
@@ -419,7 +380,7 @@ public class Main extends Activity {
             if (f != null && f.exists() && f.isDirectory()) {
                 final File[] list = f.listFiles();
                 if (list != null) {
-                    for (File o : list) {
+                    for (final File o : list) {
                         if (o.isDirectory()) {
                             ret += calcDirectorySize(o);
                         } else {

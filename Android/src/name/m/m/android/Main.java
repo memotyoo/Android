@@ -30,10 +30,6 @@ public class Main extends Activity {
         "Application Info"
     };
 
-    /*
-     * (非 Javadoc)
-     * @see android.app.Activity#onCreate(android.os.Bundle)
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +48,7 @@ public class Main extends Activity {
         lv.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_1, list));
         lv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> adapterview, View view, int position, long id) {
                 switch (position) {
                 // アプリケーション情報
