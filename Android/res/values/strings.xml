@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MM Android</string>
+    <string name="label_package_name">Package Name</string>
+    <string name="label_source_dir">Source Dir</string>
+    <string name="label_source_size">Source Size</string>
+    <string name="label_data_dir">Data Dir</string>
+    <string name="label_data_size">Data Size</string>
+    <string name="label_description">Description</string>
+    <string name="label_market_url">Market URL</string>
+    <string name="separate_colon">": "</string>
+
+</resources>
