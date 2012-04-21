@@ -24,10 +24,14 @@ public class Main extends Activity {
 
     // アプリケーション情報
     private static final int POSITION_APPINFO = 0;
+    // 端末情報情報
+    private static final int POSITION_TERMINALINFO = 1;
+    // 画像切替表示画面
+    private static final int POSITION_IMAGE_SWITCHING_VIEWER = 2;
 
     // リスト
     private static final String[] LIST_ITEMS = new String[] {
-        "Application Info"
+            "Application Info", "Terminal Info", "Image Switching Viewer"
     };
 
     @Override
@@ -36,15 +40,17 @@ public class Main extends Activity {
 
         final ArrayList<String> list = new ArrayList<String>();
         list.add(LIST_ITEMS[POSITION_APPINFO]);
+        list.add(LIST_ITEMS[POSITION_TERMINALINFO]);
+        list.add(LIST_ITEMS[POSITION_IMAGE_SWITCHING_VIEWER]);
 
         final LinearLayout ll = new LinearLayout(getApplicationContext());
-        ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-                ViewGroup.LayoutParams.FILL_PARENT));
+        ll.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
         ll.setOrientation(LinearLayout.VERTICAL);
 
         final ListView lv = new ListView(getApplicationContext());
-        lv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-                ViewGroup.LayoutParams.FILL_PARENT));
+        lv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
         lv.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                 android.R.layout.simple_list_item_1, list));
         lv.setOnItemClickListener(new OnItemClickListener() {
@@ -55,6 +61,18 @@ public class Main extends Activity {
                 case POSITION_APPINFO:
                     startActivity(new Intent(getApplicationContext(),
                             name.m.m.android.appinfo.Main.class));
+                    break;
+
+                // 端末情報
+                case POSITION_TERMINALINFO:
+                    startActivity(new Intent(getApplicationContext(),
+                            name.m.m.android.terminfo.Main.class));
+                    break;
+
+                // 画像切替表示画面
+                case POSITION_IMAGE_SWITCHING_VIEWER:
+                    startActivity(new Intent(getApplicationContext(),
+                            name.m.m.android.view.imageswitchingview.Main.class));
                     break;
 
                 default:

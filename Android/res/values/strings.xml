@@ -2,13 +2,736 @@
 <resources>
 
     <string name="app_name">MM Android</string>
-    <string name="label_package_name">Package Name</string>
-    <string name="label_source_dir">Source Dir</string>
-    <string name="label_source_size">Source Size</string>
-    <string name="label_data_dir">Data Dir</string>
-    <string name="label_data_size">Data Size</string>
-    <string name="label_description">Description</string>
-    <string name="label_market_url">Market URL</string>
-    <string name="separate_colon">": "</string>
+
+    <!-- terminfo -->
+
+    <string name="terminfo_title">Terminal Info</string>
+    <string name="terminfo_separate_colon">": "</string>
+    <string name="terminfo_unit_pixel">"%dpixel"</string>
+    <string name="terminfo_unit_hertz">"%fHz"</string>
+    <string name="terminfo_unknown">unknown</string>
+    <string name="terminfo_ldpi">ldpi</string>
+    <string name="terminfo_mdpi">mdpi</string>
+    <string name="terminfo_hdpi">hdpi</string>
+    <string name="terminfo_xdpi">xdpi</string>
+    <string name="terminfo_small">small</string>
+    <string name="terminfo_normal">normal</string>
+    <string name="terminfo_large">large</string>
+    <string name="terminfo_xlarge">xlarge</string>
+    <string name="terminfo_header_display">Display</string>
+    <string name="terminfo_colmun_display_width">Width</string>
+    <string name="terminfo_colmun_display_height">Height</string>
+    <string name="terminfo_colmun_display_statusbar_height">Status Bar Height</string>
+    <string name="terminfo_colmun_display_density_dpi">Density DPI</string>
+    <string name="terminfo_colmun_display_dpi">DPI</string>
+    <string name="terminfo_colmun_display_size">Resources Size</string>
+    <string name="terminfo_colmun_display_refresh_rate">Refresh Rate</string>
+    <string name="terminfo_header_build">Build</string>
+    <string name="terminfo_header_proc_version">Version</string>
+    <string name="terminfo_header_proc_cpuinfo">CPU Info</string>
+    <string name="terminfo_header_proc_meminfo">Memory Info</string>
+
+    <!-- appinfo -->
+
+    <string name="appinfo_separate_colon">": "</string>
+    <string name="appinfo_separate_space">" "</string>
+    <string name="appinfo_label_app_name">APP Name</string>
+    <string name="appinfo_label_search_market_url">Search Market URL</string>
+
+    <!-- appinfo: Button -->
+
+    <string name="appinfo_button_ok">OK</string>
+    <string name="appinfo_button_cancel">Cancel</string>
+
+    <!-- appinfo: Title -->
+
+    <string name="appinfo_title_scanning">Scanning...</string>
+    <string name="appinfo_title_nothing">Nothing</string>
+    <string name="appinfo_title_count">"%d items"</string>
+    <string name="appinfo_title_sort">"Order: %s"</string>
+
+    <!-- appinfo: Detail -->
+
+    <string name="appinfo_detail_package_name">Package Name</string>
+    <string name="appinfo_detail_source_dir">APK Path</string>
+    <string name="appinfo_detail_source_size">APK Size</string>
+    <string name="appinfo_detail_data_dir">Data Dir</string>
+    <string name="appinfo_detail_data_size">Data Size</string>
+    <string name="appinfo_detail_description">Description</string>
+
+    <!-- appinfo: Output -->
+
+    <string name="appinfo_output_format">Format</string>
+    <string name="appinfo_output_html">HTML</string>
+    <string name="appinfo_output_text">TEXT</string>
+    <string name="appinfo_output_label_display">display after output</string>
+    <string name="appinfo_output_items">Output Items</string>
+    <string name="appinfo_output_market_search_url">Market Search URL</string>
+    <string name="appinfo_output_punc">"* "</string>
+    <string name="appinfo_output_indent">"    "</string>
+    <string name="appinfo_output_message_unavailable">SD card unavailable</string>
+    <string name="appinfo_output_app_notfound">App not found</string>
+
+    <!-- appinfo: Detail Menu -->
+
+    <string name="appinfo_menu_detail_uses_permission">Uses Permission</string>
+    <string name="appinfo_menu_detail_search_market">Search Market</string>
+    <string name="appinfo_menu_detail_share">Share</string>
+    <string name="appinfo_menu_detail_launch">Launch</string>
+    <string name="appinfo_menu_detail_uninstall">Uninstall</string>
+
+    <!-- appinfo: Menu -->
+
+    <string name="appinfo_menu_display">Display</string>
+    <string name="appinfo_menu_sort">Sort</string>
+    <string name="appinfo_menu_search">Search</string>
+    <string name="appinfo_menu_output">Output</string>
+
+    <!-- appinfo: Display Menu -->
+
+    <string name="appinfo_menu_display_launcher">Launcher</string>
+    <string name="appinfo_menu_display_uninstall">Uninstall</string>
+    <string name="appinfo_menu_display_preinstall">Preinstall</string>
+    <string name="appinfo_menu_display_except_preinstall">Except Preinstall</string>
+    <string name="appinfo_menu_display_all">All</string>
+
+    <!-- appinfo: Sort Menu -->
+
+    <string name="appinfo_menu_sort_name">Name</string>
+    <string name="appinfo_menu_sort_source_size">APK Size</string>
+    <string name="appinfo_menu_sort_data_size">Data Size</string>
+
+    <!-- appinfo: permissions (add) -->
+
+    <string name="permlab_readAttachment">Your messages</string>
+
+    <!-- appinfo: permissions -->
+
+    <string name="permlab_statusBar">disable or modify status bar</string>
+    <string name="permdesc_statusBar">Allows application to disable
+        the status bar or add and remove system icons.</string>
+    <string name="permlab_statusBarService">status bar</string>
+    <string name="permdesc_statusBarService">Allows the application to be the status bar.</string>
+    <string name="permlab_expandStatusBar">expand/collapse status bar</string>
+    <string name="permdesc_expandStatusBar">Allows application to
+        expand or collapse the status bar.</string>
+    <string name="permlab_processOutgoingCalls">intercept outgoing calls</string>
+    <string name="permdesc_processOutgoingCalls">Allows application to
+        process outgoing calls and change the number to be dialed.  Malicious
+        applications may monitor, redirect, or prevent outgoing calls.</string>
+    <string name="permlab_receiveSms">receive SMS</string>
+    <string name="permdesc_receiveSms">Allows application to receive
+      and process SMS messages. Malicious applications may monitor
+      your messages or delete them without showing them to you.</string>
+    <string name="permlab_receiveMms">receive MMS</string>
+    <string name="permdesc_receiveMms">Allows application to receive
+      and process MMS messages. Malicious applications may monitor
+      your messages or delete them without showing them to you.</string>
+    <string name="permlab_receiveEmergencyBroadcast">receive emergency broadcasts</string>
+    <string name="permdesc_receiveEmergencyBroadcast">Allows application to receive
+      and process emergency broadcast messages. This permission is only available
+      to system applications.</string>
+    <string name="permlab_sendSms">send SMS messages</string>
+    <string name="permdesc_sendSms">Allows application to send SMS
+      messages. Malicious applications may cost you money by sending
+      messages without your confirmation.</string>
+    <string name="permlab_sendSmsNoConfirmation">send SMS messages with no confirmation</string>
+    <string name="permdesc_sendSmsNoConfirmation">Allows application to send SMS
+      messages. Malicious applications may cost you money by sending
+      messages without your confirmation.</string>
+    <string name="permlab_readSms">read SMS or MMS</string>
+    <string name="permdesc_readSms" product="tablet">Allows application to read
+      SMS messages stored on your tablet or SIM card. Malicious applications
+      may read your confidential messages.</string>
+    <string name="permdesc_readSms" product="default">Allows application to read
+      SMS messages stored on your phone or SIM card. Malicious applications
+      may read your confidential messages.</string>
+    <string name="permlab_writeSms">edit SMS or MMS</string>
+    <string name="permdesc_writeSms" product="tablet">Allows application to write
+      to SMS messages stored on your tablet or SIM card. Malicious applications
+      may delete your messages.</string>
+    <string name="permdesc_writeSms" product="default">Allows application to write
+      to SMS messages stored on your phone or SIM card. Malicious applications
+      may delete your messages.</string>
+    <string name="permlab_receiveWapPush">receive WAP</string>
+    <string name="permdesc_receiveWapPush">Allows application to receive
+      and process WAP messages. Malicious applications may monitor
+      your messages or delete them without showing them to you.</string>
+    <string name="permlab_getTasks">retrieve running applications</string>
+    <string name="permdesc_getTasks">Allows application to retrieve
+        information about currently and recently running tasks. May allow
+        malicious applications to discover private information about other applications.</string>
+    <string name="permlab_reorderTasks">reorder running applications</string>
+    <string name="permdesc_reorderTasks">Allows an application to move
+        tasks to the foreground and background. Malicious applications can force
+        themselves to the front without your control.</string>
+    <string name="permlab_removeTasks">stop running applications</string>
+    <string name="permdesc_removeTasks">Allows an application to remove
+        tasks and kill their applications. Malicious applications can disrupt
+        the behavior of other applications.</string>
+    <string name="permlab_setDebugApp">enable application debugging</string>
+    <string name="permdesc_setDebugApp">Allows an application to turn
+        on debugging for another application. Malicious applications can use this
+        to kill other applications.</string>
+    <string name="permlab_changeConfiguration">change your UI settings</string>
+    <string name="permdesc_changeConfiguration">Allows an application to
+        change the current configuration, such as the locale or overall font
+        size.</string>
+    <string name="permlab_enableCarMode">enable car mode</string>
+    <string name="permdesc_enableCarMode">Allows an application to
+        enable the car mode.</string>
+    <string name="permlab_killBackgroundProcesses">kill background processes</string>
+    <string name="permdesc_killBackgroundProcesses">Allows an application to
+        kill background processes of other applications, even if memory
+        isn\'t low.</string>
+    <string name="permlab_forceStopPackages">force stop other applications</string>
+    <string name="permdesc_forceStopPackages">Allows an application to
+        forcibly stop other applications.</string>
+    <string name="permlab_forceBack">force application to close</string>
+    <string name="permdesc_forceBack">Allows an application to force any
+        activity that is in the foreground to close and go back.
+        Should never be needed for normal applications.</string>
+    <string name="permlab_dump">retrieve system internal state</string>
+    <string name="permdesc_dump">Allows application to retrieve
+        internal state of the system. Malicious applications may retrieve
+        a wide variety of private and secure information that they should
+        never normally need.</string>
+    <string name="permlab_retrieve_window_content">retrieve screen content</string>
+    <string name="permdesc_retrieve_window_content">Allows application to retrieve
+        the content of the active window. Malicious applications may retrieve
+        the entire window content and examine all its text except passwords.</string>
+    <string name="permlab_shutdown">partial shutdown</string>
+    <string name="permdesc_shutdown">Puts the activity manager into a shutdown
+        state.  Does not perform a complete shutdown.</string>
+    <string name="permlab_stopAppSwitches">prevent app switches</string>
+    <string name="permdesc_stopAppSwitches">Prevents the user from switching to
+        another application.</string>
+    <string name="permlab_runSetActivityWatcher">monitor and control all application launching</string>
+    <string name="permdesc_runSetActivityWatcher">Allows an application to
+        monitor and control how the system launches activities.
+        Malicious applications may completely compromise the system. This
+        permission is only needed for development, never for normal
+        use.</string>
+    <string name="permlab_broadcastPackageRemoved">send package removed broadcast</string>
+    <string name="permdesc_broadcastPackageRemoved">Allows an application to
+        broadcast a notification that an application package has been removed.
+        Malicious applications may use this to kill any other running
+        application.</string>
+    <string name="permlab_broadcastSmsReceived">send SMS-received broadcast</string>
+    <string name="permdesc_broadcastSmsReceived">Allows an application to
+        broadcast a notification that an SMS message has been received.
+        Malicious applications may use this to forge incoming SMS messages.</string>
+    <string name="permlab_broadcastWapPush">send WAP-PUSH-received broadcast</string>
+    <string name="permdesc_broadcastWapPush">Allows an application to
+        broadcast a notification that a WAP PUSH message has been received.
+        Malicious applications may use this to forge MMS message receipt or to
+        silently replace the content of any web page with malicious variants.</string>
+    <string name="permlab_setProcessLimit">limit number of running processes</string>
+    <string name="permdesc_setProcessLimit">Allows an application
+        to control the maximum number of processes that will run. Never
+        needed for normal applications.</string>
+    <string name="permlab_setAlwaysFinish">make all background applications close</string>
+    <string name="permdesc_setAlwaysFinish">Allows an application
+        to control whether activities are always finished as soon as they
+        go to the background. Never needed for normal applications.</string>
+    <string name="permlab_batteryStats">modify battery statistics</string>
+    <string name="permdesc_batteryStats">Allows the modification of
+        collected battery statistics. Not for use by normal applications.</string>
+    <string name="permlab_backup">control system backup and restore</string>
+    <string name="permdesc_backup">Allows the application to control the system\'s backup and restore mechanism.  Not for use by normal applications.</string>
+    <string name="permlab_confirm_full_backup">confirm a full backup or restore operation</string>
+    <string name="permdesc_confirm_full_backup">Allows the application to launch the full backup confirmation UI.  Not to be used by any application.</string>
+    <string name="permlab_internalSystemWindow">display unauthorized windows</string>
+    <string name="permdesc_internalSystemWindow">Allows the creation of
+        windows that are intended to be used by the internal system
+        user interface. Not for use by normal applications.</string>
+    <string name="permlab_systemAlertWindow">display system-level alerts</string>
+    <string name="permdesc_systemAlertWindow">Allows an application to
+        show system alert windows. Malicious applications can take over the
+        entire screen.</string>
+    <string name="permlab_setAnimationScale">modify global animation speed</string>
+    <string name="permdesc_setAnimationScale">Allows an application to change
+        the global animation speed (faster or slower animations) at any time.</string>
+    <string name="permlab_manageAppTokens">manage application tokens</string>
+    <string name="permdesc_manageAppTokens">Allows applications to
+        create and manage their own tokens, bypassing their normal
+        Z-ordering. Should never be needed for normal applications.</string>
+    <string name="permlab_injectEvents">press keys and control buttons</string>
+    <string name="permdesc_injectEvents" product="tablet">Allows an application to deliver
+        its own input events (key presses, etc.) to other applications. Malicious
+        applications can use this to take over the tablet.</string>
+    <string name="permdesc_injectEvents" product="default">Allows an application to deliver
+        its own input events (key presses, etc.) to other applications. Malicious
+        applications can use this to take over the phone.</string>
+    <string name="permlab_readInputState">record what you type and actions you take</string>
+    <string name="permdesc_readInputState">Allows applications to watch the
+        keys you press even when interacting with another application (such
+        as entering a password). Should never be needed for normal applications.</string>
+    <string name="permlab_bindInputMethod">bind to an input method</string>
+    <string name="permdesc_bindInputMethod">Allows the holder to bind to the top-level
+        interface of an input method. Should never be needed for normal applications.</string>
+    <string name="permlab_bindTextService">bind to a text service</string>
+    <string name="permdesc_bindTextService">Allows the holder to bind to the top-level
+        interface of a text service(e.g. SpellCheckerService). Should never be needed for normal applications.</string>
+    <string name="permlab_bindVpnService">bind to a VPN service</string>
+    <string name="permdesc_bindVpnService">Allows the holder to bind to the top-level
+        interface of a Vpn service. Should never be needed for normal applications.</string>
+    <string name="permlab_bindWallpaper">bind to a wallpaper</string>
+    <string name="permdesc_bindWallpaper">Allows the holder to bind to the top-level
+        interface of a wallpaper. Should never be needed for normal applications.</string>
+    <string name="permlab_bindRemoteViews">bind to a widget service</string>
+    <string name="permdesc_bindRemoteViews">Allows the holder to bind to the top-level
+        interface of a widget service. Should never be needed for normal applications.</string>
+    <string name="permlab_bindDeviceAdmin">interact with a device admin</string>
+    <string name="permdesc_bindDeviceAdmin">Allows the holder to send intents to
+        a device administrator. Should never be needed for normal applications.</string>
+    <string name="permlab_setOrientation">change screen orientation</string>
+    <string name="permdesc_setOrientation">Allows an application to change
+        the rotation of the screen at any time. Should never be needed for
+        normal applications.</string>
+    <string name="permlab_setPointerSpeed">change pointer speed</string>
+    <string name="permdesc_setPointerSpeed">Allows an application to change
+        the mouse or trackpad pointer speed at any time. Should never be needed for
+        normal applications.</string>
+    <string name="permlab_signalPersistentProcesses">send Linux signals to applications</string>
+    <string name="permdesc_signalPersistentProcesses">Allows application to request that the
+        supplied signal be sent to all persistent processes.</string>
+    <string name="permlab_persistentActivity">make application always run</string>
+    <string name="permdesc_persistentActivity">Allows an application to make
+        parts of itself persistent, so the system can\'t use it for other
+        applications.</string>
+    <string name="permlab_deletePackages">delete applications</string>
+    <string name="permdesc_deletePackages">Allows an application to delete
+        Android packages. Malicious applications can use this to delete important applications.</string>
+    <string name="permlab_clearAppUserData">delete other applications\' data</string>
+    <string name="permdesc_clearAppUserData">Allows an application to clear user data.</string>
+    <string name="permlab_deleteCacheFiles">delete other applications\' caches</string>
+    <string name="permdesc_deleteCacheFiles">Allows an application to delete
+        cache files.</string>
+    <string name="permlab_getPackageSize">measure application storage space</string>
+    <string name="permdesc_getPackageSize">Allows an application to retrieve
+        its code, data, and cache sizes</string>
+    <string name="permlab_installPackages">directly install applications</string>
+    <string name="permdesc_installPackages">Allows an application to install new or updated
+        Android packages. Malicious applications can use this to add new applications with arbitrarily
+        powerful permissions.</string>
+    <string name="permlab_clearAppCache">delete all application cache data</string>
+    <string name="permdesc_clearAppCache" product="tablet">Allows an application to free tablet storage
+        by deleting files in application cache directory. Access is very
+        restricted usually to system process.</string>
+    <string name="permdesc_clearAppCache" product="default">Allows an application to free phone storage
+        by deleting files in application cache directory. Access is very
+        restricted usually to system process.</string>
+    <string name="permlab_movePackage">Move application resources</string>
+    <string name="permdesc_movePackage">Allows an application to move application resources from internal to external media and vice versa.</string>
+    <string name="permlab_readLogs">read sensitive log data</string>
+    <string name="permdesc_readLogs" product="tablet">Allows an application to read from the
+        system\'s various log files.  This allows it to discover general
+        information about what you are doing with the tablet, potentially
+        including personal or private information.</string>
+    <string name="permdesc_readLogs" product="default">Allows an application to read from the
+        system\'s various log files.  This allows it to discover general
+        information about what you are doing with the phone, potentially
+        including personal or private information.</string>
+    <string name="permlab_anyCodecForPlayback">use any media decoder for playback</string>
+    <string name="permdesc_anyCodecForPlayback">Allows an application to use any installed
+        media decoder to decode for playback.</string>
+    <string name="permlab_diagnostic">read/write to resources owned by diag</string>
+    <string name="permdesc_diagnostic">Allows an application to read and write to
+    any resource owned by the diag group; for example, files in /dev. This could
+    potentially affect system stability and security. This should be ONLY be used
+    for hardware-specific diagnostics by the manufacturer or operator.</string>
+    <string name="permlab_changeComponentState">enable or disable application components</string>
+    <string name="permdesc_changeComponentState" product="tablet">llows an application to change whether a
+        component of another application is enabled or not. Malicious applications can use this
+        to disable important tablet capabilities. Care must be used with this permission, as it is
+        possible to get application components into an unusable, inconsistent, or unstable state.</string>
+    <string name="permdesc_changeComponentState" product="default">llows an application to change whether a
+        component of another application is enabled or not. Malicious applications can use this
+        to disable important phone capabilities. Care must be used with this permission, as it is
+        possible to get application components into an unusable, inconsistent, or unstable state.</string>
+    <string name="permlab_setPreferredApplications">set preferred applications</string>
+    <string name="permdesc_setPreferredApplications">Allows an application to
+        modify your preferred applications. This can allow malicious applications
+        to silently change the applications that are run, spoofing your
+        existing applications to collect private data from you.</string>
+    <string name="permlab_writeSettings">modify global system settings</string>
+    <string name="permdesc_writeSettings">Allows an application to modify the
+        system\'s settings data. Malicious applications can corrupt your system\'s
+        configuration.</string>
+    <string name="permlab_writeSecureSettings">modify secure system settings</string>
+    <string name="permdesc_writeSecureSettings">Allows an application to modify the
+        system\'s secure settings data. Not for use by normal applications.</string>
+    <string name="permlab_writeGservices">modify the Google services map</string>
+    <string name="permdesc_writeGservices">Allows an application to modify the
+        Google services map.  Not for use by normal applications.</string>
+    <string name="permlab_receiveBootCompleted">automatically start at boot</string>
+    <string name="permdesc_receiveBootCompleted" product="tablet">Allows an application to
+        have itself started as soon as the system has finished booting.
+        This can make it take longer to start the tablet and allow the
+        application to slow down the overall tablet by always running.</string>
+    <string name="permdesc_receiveBootCompleted" product="default">Allows an application to
+        have itself started as soon as the system has finished booting.
+        This can make it take longer to start the phone and allow the
+        application to slow down the overall phone by always running.</string>
+    <string name="permlab_broadcastSticky">send sticky broadcast</string>
+    <string name="permdesc_broadcastSticky" product="tablet">Allows an application to send
+        sticky broadcasts, which remain after the broadcast ends.
+        Malicious applications can make the tablet slow or unstable by causing it
+        to use too much memory.</string>
+    <string name="permdesc_broadcastSticky" product="default">Allows an application to send
+        sticky broadcasts, which remain after the broadcast ends.
+        Malicious applications can make the phone slow or unstable by causing it
+        to use too much memory.</string>
+    <string name="permlab_readContacts">read contact data</string>
+    <string name="permdesc_readContacts" product="tablet">Allows an application to read all
+        of the contact (address) data stored on your tablet. Malicious applications
+        can use this to send your data to other people.</string>
+    <string name="permdesc_readContacts" product="default">Allows an application to read all
+        of the contact (address) data stored on your phone. Malicious applications
+        can use this to send your data to other people.</string>
+    <string name="permlab_writeContacts">write contact data</string>
+    <string name="permdesc_writeContacts" product="tablet">Allows an application to modify the
+        contact (address) data stored on your tablet. Malicious
+        applications can use this to erase or modify your contact data.</string>
+    <string name="permdesc_writeContacts" product="default">Allows an application to modify the
+        contact (address) data stored on your phone. Malicious
+        applications can use this to erase or modify your contact data.</string>
+    <string name="permlab_readProfile">read your profile data</string>
+    <string name="permdesc_readProfile" product="default">Allows the application to read personal
+        profile information stored on your device, such as your name and contact information. This
+        means the application can identify you and send your profile information to others.</string>
+    <string name="permlab_writeProfile">write to your profile data</string>
+    <string name="permdesc_writeProfile" product="default">Allows the application to change or add
+        to personal profile information stored on your device, such as your name and contact
+        information.  This means other applications can identify you and send your profile
+        information to others.</string>
+    <string name="permlab_readSocialStream" product="default">read your social stream</string>
+    <string name="permdesc_readSocialStream" product="default">Allows the application to access
+        and sync social updates from you and your friends. Malicious apps can use this to read
+        private communications between you and your friends on social networks.</string>
+    <string name="permlab_writeSocialStream" product="default">write to your social stream</string>
+    <string name="permdesc_writeSocialStream" product="default">Allows the application to display
+        social updates from your friends. Malicious apps can use this to pretend to be a friend
+        and trick you into revealing passwords or other confidential information.</string>
+    <string name="permlab_readCalendar">read calendar events plus confidential information</string>
+    <string name="permdesc_readCalendar" product="tablet">Allows an application to read all calendar
+        events stored on your tablet, including those of friends or coworkers. A malicious application with
+        this permission can extract personal information from these calendars without the owners\' knowledge.</string>
+    <string name="permdesc_readCalendar" product="default">Allows an application to read all calendar
+        events stored on your phone, including those of friends or coworkers. A malicious application with
+        this permission can extract personal information from these calendars without the owners\' knowledge.</string>
+    <string name="permlab_writeCalendar">add or modify calendar events and send email to guests without owners\' knowledge</string>
+    <string name="permdesc_writeCalendar">Allows an application to send event invitations as the calendar owner and add, remove,
+        change events that you can modify on your device, including those of friends or co-workers. A malicious application with this permission
+        can send spam emails that appear to come from calendar owners, modify events without the owners\' knowledge, or add fake events.</string>
+    <string name="permlab_accessMockLocation">mock location sources for testing</string>
+    <string name="permdesc_accessMockLocation">Create mock location sources for testing.
+        Malicious applications can use this to override the location and/or status returned by real
+        location sources such as GPS or Network providers.</string>
+    <string name="permlab_accessLocationExtraCommands">access extra location provider commands</string>
+    <string name="permdesc_accessLocationExtraCommands">Access extra location provider commands.
+        Malicious applications could use this to interfere with the operation of the GPS
+        or other location sources.</string>
+    <string name="permlab_installLocationProvider">permission to install a location provider</string>
+    <string name="permdesc_installLocationProvider">Create mock location sources for testing.
+        Malicious applications can use this to override the location and/or status returned by real
+        location sources such as GPS or Network providers or monitor and report your location to an external source.</string>
+    <string name="permlab_accessFineLocation">fine (GPS) location</string>
+    <string name="permdesc_accessFineLocation" product="tablet">Access fine location sources such as the
+        Global Positioning System on the tablet, where available.
+        Malicious applications can use this to determine where you are, and may
+        consume additional battery power.</string>
+    <string name="permdesc_accessFineLocation" product="default">Access fine location sources such as the
+        Global Positioning System on the phone, where available.
+        Malicious applications can use this to determine where you are, and may
+        consume additional battery power.</string>
+    <string name="permlab_accessCoarseLocation">coarse (network-based) location</string>
+    <string name="permdesc_accessCoarseLocation" product="tablet">Access coarse location sources such as the cellular
+        network database to determine an approximate tablet location, where available. Malicious
+        applications can use this to determine approximately where you are.</string>
+    <string name="permdesc_accessCoarseLocation" product="default">Access coarse location sources such as the cellular
+        network database to determine an approximate phone location, where available. Malicious
+        applications can use this to determine approximately where you are.</string>
+    <string name="permlab_accessSurfaceFlinger">access SurfaceFlinger</string>
+    <string name="permdesc_accessSurfaceFlinger">Allows application to use
+        SurfaceFlinger low-level features.</string>
+    <string name="permlab_readFrameBuffer">read frame buffer</string>
+    <string name="permdesc_readFrameBuffer">Allows application to
+        read the content of the frame buffer.</string>
+    <string name="permlab_modifyAudioSettings">change your audio settings</string>
+    <string name="permdesc_modifyAudioSettings">Allows application to modify
+        global audio settings such as volume and routing.</string>
+    <string name="permlab_recordAudio">record audio</string>
+    <string name="permdesc_recordAudio">Allows application to access
+        the audio record path.</string>
+    <string name="permlab_camera">take pictures and videos</string>
+    <string name="permdesc_camera">Allows application to take pictures and videos
+        with the camera. This allows the application at any time to collect
+        images the camera is seeing.</string>
+    <string name="permlab_brick" product="tablet">permanently disable tablet</string>
+    <string name="permlab_brick" product="default">permanently disable phone</string>
+    <string name="permdesc_brick" product="tablet">Allows the application to
+        disable the entire tablet permanently. This is very dangerous.</string>
+    <string name="permdesc_brick" product="default">Allows the application to
+        disable the entire phone permanently. This is very dangerous.</string>
+    <string name="permlab_reboot" product="tablet">force tablet reboot</string>
+    <string name="permlab_reboot" product="default">force phone reboot</string>
+    <string name="permdesc_reboot" product="tablet">Allows the application to
+        force the tablet to reboot.</string>
+    <string name="permdesc_reboot" product="default">Allows the application to
+        force the phone to reboot.</string>
+    <string name="permlab_mount_unmount_filesystems">mount and unmount filesystems</string>
+    <string name="permdesc_mount_unmount_filesystems">Allows the application to mount and
+        unmount filesystems for removable storage.</string>
+    <string name="permlab_mount_format_filesystems">format external storage</string>
+    <string name="permdesc_mount_format_filesystems">Allows the application to format removable storage.</string>
+    <string name="permlab_asec_access">get information on internal storage</string>
+    <string name="permdesc_asec_access">Allows the application to get information on internal storage.</string>
+    <string name="permlab_asec_create">create internal storage</string>
+    <string name="permdesc_asec_create">Allows the application to create internal storage.</string>
+    <string name="permlab_asec_destroy">destroy internal storage</string>
+    <string name="permdesc_asec_destroy">Allows the application to destroy internal storage.</string>
+    <string name="permlab_asec_mount_unmount">mount / unmount internal storage</string>
+    <string name="permdesc_asec_mount_unmount">Allows the application to mount / unmount internal storage.</string>
+    <string name="permlab_asec_rename">rename internal storage</string>
+    <string name="permdesc_asec_rename">Allows the application to rename internal storage.</string>
+    <string name="permlab_vibrate">control vibrator</string>
+    <string name="permdesc_vibrate">Allows the application to control
+        the vibrator.</string>
+    <string name="permlab_flashlight">control flashlight</string>
+    <string name="permdesc_flashlight">Allows the application to control
+        the flashlight.</string>
+    <string name="permlab_manageUsb">manage preferences and permissions for USB devices</string>
+    <string name="permdesc_manageUsb">Allows the application to manage preferences and permissions for USB devices.</string>
+    <string name="permlab_accessMtp">implement MTP protocol</string>
+    <string name="permdesc_accessMtp">Allows access to the kernel MTP driver to implement the MTP USB protocol.</string>
+    <string name="permlab_hardware_test">test hardware</string>
+    <string name="permdesc_hardware_test">Allows the application to control
+        various peripherals for the purpose of hardware testing.</string>
+    <string name="permlab_callPhone">directly call phone numbers</string>
+    <string name="permdesc_callPhone">Allows the application to call
+        phone numbers without your intervention. Malicious applications may
+        cause unexpected calls on your phone bill. Note that this does not
+        allow the application to call emergency numbers.</string>
+    <string name="permlab_callPrivileged">directly call any phone numbers</string>
+    <string name="permdesc_callPrivileged">Allows the application to call
+        any phone number, including emergency numbers, without your intervention.
+        Malicious applications may place unnecessary and illegal calls to emergency
+        services.</string>
+    <string name="permlab_performCdmaProvisioning" product="tablet">directly start CDMA tablet setup</string>
+    <string name="permlab_performCdmaProvisioning" product="default">directly start CDMA phone setup</string>
+    <string name="permdesc_performCdmaProvisioning">Allows the application to start CDMA provisioning.
+        Malicious applications may unnecessarily start CDMA provisioning</string>
+    <string name="permlab_locationUpdates">control location update notifications</string>
+    <string name="permdesc_locationUpdates">Allows enabling/disabling location
+        update notifications from the radio.  Not for use by normal applications.</string>
+    <string name="permlab_checkinProperties">access checkin properties</string>
+    <string name="permdesc_checkinProperties">Allows read/write access to
+        properties uploaded by the checkin service.  Not for use by normal
+        applications.</string>
+    <string name="permlab_bindGadget">choose widgets</string>
+    <string name="permdesc_bindGadget">Allows the application to tell the system
+        which widgets can be used by which application.  With this permission,
+        applications can give access to personal data to other applications.
+        Not for use by normal applications.</string>
+    <string name="permlab_modifyPhoneState">modify phone state</string>
+    <string name="permdesc_modifyPhoneState">Allows the application to control the
+        phone features of the device. An application with this permission can switch
+        networks, turn the phone radio on and off and the like without ever notifying
+        you.</string>
+    <string name="permlab_readPhoneState">read phone state and identity</string>
+    <string name="permdesc_readPhoneState">Allows the application to access the phone
+        features of the device.  An application with this permission can determine the phone
+        number and serial number of this phone, whether a call is active, the number that call
+        is connected to and the like.</string>
+    <string name="permlab_wakeLock" product="tablet">prevent tablet from sleeping</string>
+    <string name="permlab_wakeLock" product="default">prevent phone from sleeping</string>
+    <string name="permdesc_wakeLock" product="tablet">Allows an application to prevent
+        the tablet from going to sleep.</string>
+    <string name="permdesc_wakeLock" product="default">Allows an application to prevent
+        the phone from going to sleep.</string>
+    <string name="permlab_devicePower" product="tablet">power tablet on or off</string>
+    <string name="permlab_devicePower" product="default">power phone on or off</string>
+    <string name="permdesc_devicePower" product="tablet">Allows the application to turn the
+        tablet on or off.</string>
+    <string name="permdesc_devicePower" product="default">Allows the application to turn the
+        phone on or off.</string>
+    <string name="permlab_factoryTest">run in factory test mode</string>
+    <string name="permdesc_factoryTest" product="tablet">Run as a low-level manufacturer test,
+        allowing complete access to the tablet hardware. Only available
+        when a tablet is running in manufacturer test mode.</string>
+    <string name="permdesc_factoryTest" product="default">Run as a low-level manufacturer test,
+        allowing complete access to the phone hardware. Only available
+        when a phone is running in manufacturer test mode.</string>
+    <string name="permlab_setWallpaper">set wallpaper</string>
+    <string name="permdesc_setWallpaper">Allows the application
+        to set the system wallpaper.</string>
+    <string name="permlab_setWallpaperHints">set wallpaper size hints</string>
+    <string name="permdesc_setWallpaperHints">Allows the application
+        to set the system wallpaper size hints.</string>
+    <string name="permlab_masterClear">reset system to factory defaults</string>
+    <string name="permdesc_masterClear">Allows an application to completely
+        reset the system to its factory settings, erasing all data,
+        configuration, and installed applications.</string>
+    <string name="permlab_setTime">set time</string>
+    <string name="permdesc_setTime" product="tablet">Allows an application to change
+        the tablet\'s clock time.</string>
+    <string name="permdesc_setTime" product="default">Allows an application to change
+        the phone\'s clock time.</string>
+    <string name="permlab_setTimeZone">set time zone</string>
+    <string name="permdesc_setTimeZone" product="tablet">Allows an application to change
+        the tablet\'s time zone.</string>
+    <string name="permdesc_setTimeZone" product="default">Allows an application to change
+        the phone\'s time zone.</string>
+    <string name="permlab_accountManagerService">act as the AccountManagerService</string>
+    <string name="permdesc_accountManagerService">Allows an
+    application to make calls to AccountAuthenticators</string>
+    <string name="permlab_getAccounts">discover known accounts</string>
+    <string name="permdesc_getAccounts" product="tablet">Allows an application to get
+      the list of accounts known by the tablet.</string>
+    <string name="permdesc_getAccounts" product="default">Allows an application to get
+      the list of accounts known by the phone.</string>
+    <string name="permlab_authenticateAccounts">act as an account authenticator</string>
+    <string name="permdesc_authenticateAccounts">Allows an application
+    to use the account authenticator capabilities of the
+    AccountManager, including creating accounts and getting and
+    setting their passwords.</string>
+    <string name="permlab_manageAccounts">manage the accounts list</string>
+    <string name="permdesc_manageAccounts">Allows an application to
+    perform operations like adding, and removing accounts and deleting
+    their password.</string>
+    <string name="permlab_useCredentials">use the authentication
+    credentials of an account</string>
+    <string name="permdesc_useCredentials">Allows an application to
+    request authentication tokens.</string>
+    <string name="permlab_accessNetworkState">view network state</string>
+    <string name="permdesc_accessNetworkState">Allows an application to view
+      the state of all networks.</string>
+    <string name="permlab_createNetworkSockets">full Internet access</string>
+    <string name="permdesc_createNetworkSockets">Allows an application to
+      create network sockets.</string>
+    <string name="permlab_writeApnSettings">change/intercept network settings and traffic</string>
+    <string name="permdesc_writeApnSettings">Allows an application to change network settings and to intercept and inspect all network traffic,
+      for example to change the proxy and port of any APN. Malicious applications could monitor, redirect, or modify network
+      packets without your knowledge.</string>
+    <string name="permlab_changeNetworkState">change network connectivity</string>
+    <string name="permdesc_changeNetworkState">Allows an application to change
+      the state of network connectivity.</string>
+    <string name="permlab_changeTetherState">Change tethered connectivity</string>
+    <string name="permdesc_changeTetherState">Allows an application to change
+      the state of tethered network connectivity.</string>
+    <string name="permlab_changeBackgroundDataSetting">change background data usage setting</string>
+    <string name="permdesc_changeBackgroundDataSetting">Allows an application to change
+      the background data usage setting.</string>
+    <string name="permlab_accessWifiState">view Wi-Fi state</string>
+    <string name="permdesc_accessWifiState">Allows an application to view
+      the information about the state of Wi-Fi.</string>
+    <string name="permlab_changeWifiState">change Wi-Fi state</string>
+    <string name="permdesc_changeWifiState">Allows an application to connect
+      to and disconnect from Wi-Fi access points, and to make changes to
+      configured Wi-Fi networks.</string>
+    <string name="permlab_changeWifiMulticastState">allow Wi-Fi Multicast
+      reception</string>
+    <string name="permdesc_changeWifiMulticastState">Allows an application to
+      receive packets not directly addressed to your device.  This can be
+      useful when discovering services offered near by.  It uses more power
+      than the non-multicast mode.</string>
+    <string name="permlab_accessWimaxState">view WiMAX state</string>
+    <string name="permdesc_accessWimaxState">Allows an application to view
+      the information about the state of WiMAX.</string>
+    <string name="permlab_changeWimaxState">change WiMAX state</string>
+    <string name="permdesc_changeWimaxState">Allows an application to connect
+      to and disconnect from WiMAX network.</string>
+    <string name="permlab_bluetoothAdmin">bluetooth administration</string>
+    <string name="permdesc_bluetoothAdmin" product="tablet">Allows an application to configure
+      the local Bluetooth tablet, and to discover and pair with remote
+      devices.</string>
+    <string name="permdesc_bluetoothAdmin" product="default">Allows an application to configure
+      the local Bluetooth phone, and to discover and pair with remote
+      devices.</string>
+    <string name="permlab_bluetooth">create Bluetooth connections</string>
+    <string name="permdesc_bluetooth" product="tablet">Allows an application to view
+      configuration of the local Bluetooth tablet, and to make and accept
+      connections with paired devices.</string>
+    <string name="permdesc_bluetooth" product="default">Allows an application to view
+      configuration of the local Bluetooth phone, and to make and accept
+      connections with paired devices.</string>
+    <string name="permlab_nfc">control Near Field Communication</string>
+    <string name="permdesc_nfc">Allows an application to communicate
+      with Near Field Communication (NFC) tags, cards, and readers.</string>
+    <string name="permlab_disableKeyguard">disable keylock</string>
+    <string name="permdesc_disableKeyguard">Allows an application to disable
+      the keylock and any associated password security. A legitimate example of
+      this is the phone disabling the keylock when receiving an incoming phone call,
+      then re-enabling the keylock when the call is finished.</string>
+    <string name="permlab_readSyncSettings">read sync settings</string>
+    <string name="permdesc_readSyncSettings">Allows an application to read the sync settings,
+        such as whether sync is enabled for Contacts.</string>
+    <string name="permlab_writeSyncSettings">write sync settings</string>
+    <string name="permdesc_writeSyncSettings">Allows an application to modify the sync
+        settings, such as whether sync is enabled for Contacts.</string>
+    <string name="permlab_readSyncStats">read sync statistics</string>
+    <string name="permdesc_readSyncStats">Allows an application to read the sync stats; e.g., the
+        history of syncs that have occurred.</string>
+    <string name="permlab_subscribedFeedsRead">read subscribed feeds</string>
+    <string name="permdesc_subscribedFeedsRead">Allows an application to get details about the currently synced feeds.</string>
+    <string name="permlab_subscribedFeedsWrite">write subscribed feeds</string>
+    <string name="permdesc_subscribedFeedsWrite">Allows an application to modify
+      your currently synced feeds. This could allow a malicious application to
+      change your synced feeds.</string>
+    <string name="permlab_readDictionary">read user defined dictionary</string>
+    <string name="permdesc_readDictionary">Allows an application to read any private
+      words, names and phrases that the user may have stored in the user dictionary.</string>
+    <string name="permlab_writeDictionary">write to user defined dictionary</string>
+    <string name="permdesc_writeDictionary">Allows an application to write new words into the
+      user dictionary.</string>
+    <string name="permlab_sdcardWrite" product="nosdcard">modify/delete USB storage contents</string>
+    <string name="permlab_sdcardWrite" product="default">modify/delete SD card contents</string>
+    <string name="permdesc_sdcardWrite" product="nosdcard">Allows an application to write to the USB storage.</string>
+    <string name="permdesc_sdcardWrite" product="default">Allows an application to write to the SD card.</string>
+    <string name="permlab_mediaStorageWrite" product="default">modify/delete internal media storage contents</string>
+    <string name="permdesc_mediaStorageWrite" product="default">Allows an application to modify the contents of the internal media storage.</string>
+    <string name="permlab_cache_filesystem">access the cache filesystem</string>
+    <string name="permdesc_cache_filesystem">Allows an application to read and write the cache filesystem.</string>
+    <string name="permlab_use_sip">make/receive Internet calls</string>
+    <string name="permdesc_use_sip">Allows an application to use the SIP service to make/receive Internet calls.</string>
+    <string name="permlab_readNetworkUsageHistory">read historical network usage</string>
+    <string name="permdesc_readNetworkUsageHistory">Allows an application to read historical network usage for specific networks and applications.</string>
+    <string name="permlab_manageNetworkPolicy">manage network policy</string>
+    <string name="permdesc_manageNetworkPolicy">Allows an application to manage network policies and define application-specific rules.</string>
+    <string name="permlab_modifyNetworkAccounting">modify network usage accounting</string>
+    <string name="permdesc_modifyNetworkAccounting">Allows modification of how network usage is accounted against applications. Not for use by normal applications.</string>
+    <string name="permlab_readHistoryBookmarks">read Browser\'s history and bookmarks</string>
+    <string name="permdesc_readHistoryBookmarks">Allows the application to read all
+        the URLs that the Browser has visited, and all of the Browser\'s bookmarks.</string>
+    <string name="permlab_writeHistoryBookmarks">write Browser\'s history and bookmarks</string>
+    <string name="permdesc_writeHistoryBookmarks" product="tablet">Allows an application to modify the
+        Browser\'s history or bookmarks stored on your tablet. Malicious applications
+        can use this to erase or modify your Browser\'s data.</string>
+    <string name="permdesc_writeHistoryBookmarks" product="default">Allows an application to modify the
+        Browser\'s history or bookmarks stored on your phone. Malicious applications
+        can use this to erase or modify your Browser\'s data.</string>
+    <string name="permlab_setAlarm">set alarm in alarm clock</string>
+    <string name="permdesc_setAlarm">Allows the application to set an alarm in
+      an installed alarm clock application. Some alarm clock applications may
+      not implement this feature.</string>
+    <string name="permlab_addVoicemail">add voicemail</string>
+    <string name="permdesc_addVoicemail">Allows the application to add messages
+      to your voicemail inbox.</string>
+    <string name="permlab_writeGeolocationPermissions">Modify Browser geolocation permissions</string>
+    <string name="permdesc_writeGeolocationPermissions">Allows an application to modify the
+        Browser\'s geolocation permissions. Malicious applications
+        can use this to allow sending location information to arbitrary web sites.</string>
+    <string name="permlab_packageVerificationAgent">verify packages</string>
+    <string name="permdesc_packageVerificationAgent">Allows the application to verify a package is
+        installable.</string>
+    <string name="permlab_bindPackageVerifier">bind to a package verifier</string>
+    <string name="permdesc_bindPackageVerifier">Allows the holder to make requests of
+        package verifiers. Should never be needed for normal applications.</string>
+    <string name="permlab_pkgUsageStats">update component usage statistics</string>
+    <string name="permdesc_pkgUsageStats">Allows the modification of collected component usage statistics. Not for use by normal applications.</string>
+    <string name="permlab_copyProtectedData">Allows to invoke default container service to copy content. Not for use by normal applications.</string>
+    <string name="permdesc_copyProtectedData">Allows to invoke default container service to copy content. Not for use by normal applications.</string>
 
 </resources>
