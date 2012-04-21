@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- appinfo: Output -->
+
+    <color name="appinfo_output_fg">#fff</color>
+    <color name="appinfo_output_bg">#000</color>
+    <color name="appinfo_output_header_fg">#000</color>
+    <color name="appinfo_output_header_bg">#c0c0c0</color>
+
+    <!-- terminfot -->
+
+    <color name="terminfo_header_fg">#000</color>
+    <color name="terminfo_header_bg">#c0c0c0</color>
+
+</resources>

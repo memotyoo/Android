@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/appinfo_output_bg"
+    android:orientation="vertical" >
+
+    <!-- 出力形式 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appinfo_output_header_bg"
+            android:text="@string/appinfo_output_format"
+            android:textColor="@color/appinfo_output_header_fg"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rg_format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_html"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appinfo_output_html"
+                android:textColor="@color/appinfo_output_fg" />
+
+            <RadioButton
+                android:id="@+id/rb_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/appinfo_output_text"
+                android:textColor="@color/appinfo_output_fg" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/cb_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/appinfo_output_label_display"
+            android:textColor="@color/appinfo_output_fg" />
+    </LinearLayout>
+
+    <!-- 出力項目 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appinfo_output_header_bg"
+            android:text="@string/appinfo_output_items"
+            android:textColor="@color/appinfo_output_header_fg"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/cb_app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_label_app_name"
+                    android:textColor="@color/appinfo_output_fg" />
+
+                <CheckBox
+                    android:id="@+id/cb_package_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_detail_package_name"
+                    android:textColor="@color/appinfo_output_fg" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/cb_source_dir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_detail_source_dir"
+                    android:textColor="@color/appinfo_output_fg" />
+
+                <CheckBox
+                    android:id="@+id/cb_source_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_detail_source_size"
+                    android:textColor="@color/appinfo_output_fg" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/cb_data_dir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_detail_data_dir"
+                    android:textColor="@color/appinfo_output_fg" />
+
+                <CheckBox
+                    android:id="@+id/cb_data_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_detail_data_size"
+                    android:textColor="@color/appinfo_output_fg" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/cb_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_detail_description"
+                    android:textColor="@color/appinfo_output_fg" />
+
+                <CheckBox
+                    android:id="@+id/cb_permission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/appinfo_menu_detail_uses_permission"
+                    android:textColor="@color/appinfo_output_fg" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/cb_market"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:text="@string/appinfo_output_market_search_url"
+                    android:textColor="@color/appinfo_output_fg" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>
