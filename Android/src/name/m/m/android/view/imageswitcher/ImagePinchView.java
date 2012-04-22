@@ -22,11 +22,11 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 
 /**
- * 画像切替表示ビュー。
+ * 画像ピンチ表示ビュー。
  */
-public class ImageZoomView extends View {
+public class ImagePinchView extends View {
 
-    private static final String TAG = ImageZoomView.class.getSimpleName();
+    private static final String TAG = ImagePinchView.class.getSimpleName();
 
     private String mImagePath = null;
 
@@ -64,15 +64,15 @@ public class ImageZoomView extends View {
         }
     };
 
-    public ImageZoomView(Context context) {
+    public ImagePinchView(Context context) {
         this(context, null, 0);
     }
 
-    public ImageZoomView(Context context, AttributeSet attrs) {
+    public ImagePinchView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ImageZoomView(Context context, AttributeSet attrs, int defStyle) {
+    public ImagePinchView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mScaleGestureDetector = new ScaleGestureDetector(context, mSimpleOnScaleGestureListener);
     }
@@ -151,46 +151,6 @@ public class ImageZoomView extends View {
             mBitmap.recycle();
             mBitmap = null;
         }
-    }
-
-    @Override
-    protected void onVisibilityChanged(View changedView, int visibility) {
-        super.onVisibilityChanged(changedView, visibility);
-        String state = "";
-        switch (visibility) {
-        case View.VISIBLE:
-            state = "visible";
-            break;
-        case View.INVISIBLE:
-            state = "invisible";
-            break;
-        case View.GONE:
-            state = "gone";
-            break;
-        default:
-            break;
-        }
-        Log.v(TAG, "onVisibilityChanged: " + state);
-    }
-
-    @Override
-    protected void onWindowVisibilityChanged(int visibility) {
-        super.onWindowVisibilityChanged(visibility);
-        String state = "";
-        switch (visibility) {
-        case View.VISIBLE:
-            state = "visible";
-            break;
-        case View.INVISIBLE:
-            state = "invisible";
-            break;
-        case View.GONE:
-            state = "gone";
-            break;
-        default:
-            break;
-        }
-        Log.v(TAG, "onWindowVisibilityChanged: " + state);
     }
 
     private class LoadTask extends AsyncTask<Void, Void, Bitmap> {

@@ -31,7 +31,7 @@ public class Main extends Activity {
 
     // リスト
     private static final String[] LIST_ITEMS = new String[] {
-            "Application Info", "Terminal Info", "Image Switching Viewer"
+            "Application Info", "Terminal Info", "Image Switcher"
     };
 
     @Override

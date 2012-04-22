@@ -7,8 +7,10 @@ package name.m.m.android.view.imageswitcher;
 import name.m.m.android.R;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -21,7 +23,7 @@ import android.widget.ViewFlipper;
 import java.util.ArrayList;
 
 /**
- * 画像切替ビューア画面。
+ * 画像切替表示画面。
  */
 public class Main extends Activity {
 
@@ -71,7 +73,7 @@ public class Main extends Activity {
                     mViewFlipper.showNext();
                 }
 
-                ((ImageZoomView) mViewFlipper.getCurrentView()).setScale(1.0f);
+                ((ImagePinchView) mViewFlipper.getCurrentView()).setScale(1.0f);
                 return true;
             }
             return false;
@@ -110,15 +112,28 @@ public class Main extends Activity {
         mInFromRight = AnimationUtils.loadAnimation(this, R.anim.right_in);
         mOutToLeft = AnimationUtils.loadAnimation(this, R.anim.left_out);
 
-        final String sdPath = Environment.getExternalStorageDirectory().getPath();
-        mImageList = new ArrayList<String>();
-        // 画像パスリスト
+        final Cursor cursor = MediaStore.Images.Media.query(getContentResolver(),
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                mImageList = new ArrayList<String>();
+                do {
+                    final String path = cursor.getString(cursor
+                            .getColumnIndex(MediaStore.Images.ImageColumns.DATA));
+                    if (path != null && !"".equals(path)) {
+                        mImageList.add(path);
+                    }
+                } while (cursor.moveToNext());
 
-        for (int i = 0; i < mImageList.size(); i++) {
-            final ImageZoomView child = new ImageZoomView(getApplicationContext());
-            child.setImagePath(mImageList.get(i));
-            child.setOnTouchListener(mOnTouchListener);
-            mViewFlipper.addView(child, i);
+                Log.v(TAG, "image count: " + mImageList.size());
+                for (int i = 0; i < mImageList.size(); i++) {
+                    final ImagePinchView child = new ImagePinchView(getApplicationContext());
+                    child.setImagePath(mImageList.get(i));
+                    child.setOnTouchListener(mOnTouchListener);
+                    mViewFlipper.addView(child, i);
+                }
+            }
+            cursor.close();
         }
     }
 }
