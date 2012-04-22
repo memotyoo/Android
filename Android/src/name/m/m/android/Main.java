@@ -72,7 +72,7 @@ public class Main extends Activity {
                 // 画像切替表示画面
                 case POSITION_IMAGE_SWITCHING_VIEWER:
                     startActivity(new Intent(getApplicationContext(),
-                            name.m.m.android.view.imageswitchingview.Main.class));
+                            name.m.m.android.view.imageswitcher.Main.class));
                     break;
 
                 default:

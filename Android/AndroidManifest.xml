@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".appinfo.Main" />
         <activity android:name=".terminfo.Main" />
-        <activity android:name=".view.imageswitchingview.Main" />
+        <activity android:name=".view.imageswitcher.Main" />
     </application>
 
 </manifest>
