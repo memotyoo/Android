@@ -24,14 +24,16 @@ public class Main extends Activity {
 
     // アプリケーション情報
     private static final int POSITION_APPINFO = 0;
+    // ゲーム
+    private static final int POSITION_GAME = 1;
     // 端末情報情報
-    private static final int POSITION_TERMINALINFO = 1;
+    private static final int POSITION_TERMINALINFO = 2;
     // 画像切替表示画面
-    private static final int POSITION_IMAGE_SWITCHING_VIEWER = 2;
+    private static final int POSITION_IMAGE_SWITCHING_VIEWER = 3;
 
     // リスト
     private static final String[] LIST_ITEMS = new String[] {
-            "Application Info", "Terminal Info", "Image Switcher"
+            "Application Info", "Game", "Terminal Info", "Image Switcher"
     };
 
     @Override
@@ -40,6 +42,7 @@ public class Main extends Activity {
 
         final ArrayList<String> list = new ArrayList<String>();
         list.add(LIST_ITEMS[POSITION_APPINFO]);
+        list.add(LIST_ITEMS[POSITION_GAME]);
         list.add(LIST_ITEMS[POSITION_TERMINALINFO]);
         list.add(LIST_ITEMS[POSITION_IMAGE_SWITCHING_VIEWER]);
 
@@ -61,6 +64,12 @@ public class Main extends Activity {
                 case POSITION_APPINFO:
                     startActivity(new Intent(getApplicationContext(),
                             name.m.m.android.appinfo.Main.class));
+                    break;
+
+                // ゲーム
+                case POSITION_GAME:
+                    startActivity(new Intent(getApplicationContext(),
+                            name.m.m.android.game.Main.class));
                     break;
 
                 // 端末情報

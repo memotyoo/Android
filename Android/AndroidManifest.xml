@@ -8,6 +8,7 @@
         android:minSdkVersion="7"
         android:targetSdkVersion="13" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -23,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".appinfo.Main" />
+        <activity
+            android:name=".game.Main"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         <activity android:name=".terminfo.Main" />
         <activity android:name=".view.imageswitcher.Main" />
     </application>
