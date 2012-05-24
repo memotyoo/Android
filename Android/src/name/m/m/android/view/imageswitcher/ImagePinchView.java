@@ -48,7 +48,7 @@ public class ImagePinchView extends View {
 
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
-            mScale += detector.getScaleFactor() > 1 ? 0.05f : -0.05f;
+            mScale += detector.getScaleFactor() > 1 ? 0.02f : -0.02f;
             if (mScale > 3) {
                 mScale = 3.0f;
             } else if (mScale < 0.5f) {
@@ -79,7 +79,7 @@ public class ImagePinchView extends View {
 
     /**
      * 表示画像を設定する。
-     * 
+     *
      * @param list 画像パス。
      */
     public void setImagePath(String path) {
@@ -88,7 +88,7 @@ public class ImagePinchView extends View {
 
     /**
      * 表示倍率を設定する。
-     * 
+     *
      * @param scale 倍率。
      */
     public void setScale(float scale) {
@@ -160,6 +160,7 @@ public class ImagePinchView extends View {
 
             final BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
+            options.inDither = true;
 
             BitmapFactory.decodeFile(mImagePath, options);
 

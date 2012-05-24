@@ -9,7 +9,7 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 /**
- * 
+ * 描画ベースクラス。
  */
 abstract class BaseDrawer {
 
