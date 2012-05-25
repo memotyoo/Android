@@ -109,9 +109,9 @@ public class MainSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
                 if (mIsDraw && sTimeline.isFinished()) {
                     if (mOnFinishedListener == null) {
-                        Log.w(TAG, "listener nof found");
+                        Log.w(TAG, "listener not found");
                     } else {
-                        Log.w(TAG, "bar chart finished");
+                        Log.w(TAG, "finished");
                         mOnFinishedListener.onFinished();
                     }
 
@@ -122,6 +122,15 @@ public class MainSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 doDraw(getHolder());
             }
         }
+    }
+
+    /**
+     * 描画終了リスナをセットする。
+     *
+     * @param listener 描画終了リスナ。
+     */
+    public void setOnFinishedListener(OnFinishedListener listener) {
+        mOnFinishedListener = listener;
     }
 
     /**

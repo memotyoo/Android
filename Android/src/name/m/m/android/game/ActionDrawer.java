@@ -5,11 +5,14 @@
 package name.m.m.android.game;
 
 import name.m.m.android.R;
+import name.m.m.android.game.ControllerDrawer.KeyListener;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -17,6 +20,8 @@ import android.view.MotionEvent;
  * アクション描画クラス。
  */
 public class ActionDrawer extends BaseDrawer {
+
+    public static boolean sIsInit = false;
 
     public static float sMinLeft = 0;
     public static float sMaxLeft = 0;
@@ -32,8 +37,6 @@ public class ActionDrawer extends BaseDrawer {
     private static final float JUMP = 6.0f;
     private static final int JUMP_TIME = 600;
 
-    private static boolean sIsInit = false;
-
     private static float sSpeed = 0;
     private static float sJump = 0;
 
@@ -47,6 +50,8 @@ public class ActionDrawer extends BaseDrawer {
     private static boolean sIsJump = false;
     private static Timeline sJumpStartTime = null;
     private static float sJumpStartTop = 0;
+
+    private static SoundPool sSe = null;
 
     private static ActionDrawer instance = new ActionDrawer();
 
@@ -144,8 +149,14 @@ public class ActionDrawer extends BaseDrawer {
         sSpeed = 0;
         sJump = 0;
 
+        if (sSe != null) {
+            sSe.release();
+            sSe = null;
+        }
+
         if (sChara != null) {
             sChara.recycle();
+            sChara = null;
         }
 
         sLeft = 0;
@@ -168,9 +179,21 @@ public class ActionDrawer extends BaseDrawer {
     private void init(Context context) {
         Log.v(TAG, "init");
 
+        sSe = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        final int idJump = sSe.load(context, R.raw.jump, 1);
+
         if (sChara == null || sChara.isRecycled()) {
             sChara = BitmapFactory.decodeResource(context.getResources(), R.drawable.chara);
         }
+
+        ControllerDrawer.setKeyListener(new KeyListener() {
+            @Override
+            public void onDown(String key) {
+                if (key.equals(ControllerDrawer.KEY_BUTTON_A)) {
+                    sSe.play(idJump, 1, 1, 0, 0, 1);
+                }
+            }
+        });
 
         sSpeed = MainSurfaceView.sScale * SPEED;
         sJump = MainSurfaceView.sScale * JUMP;
@@ -186,5 +209,4 @@ public class ActionDrawer extends BaseDrawer {
 
         sIsInit = true;
     }
-
 }

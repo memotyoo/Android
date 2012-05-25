@@ -4,23 +4,34 @@
 // Last updated: [2012/05/21]
 package name.m.m.android.game;
 
-import name.m.m.android.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.HashMap;
 
 /**
- *
+ * コントローラ描画クラス。
  */
 public class ControllerDrawer extends BaseDrawer {
+
+    public interface KeyListener {
+        public void onDown(String key);
+    }
+
+    public static final String KEY_BAR_LEFT = "BAR_LEFT";
+    public static final String KEY_BAR_TOP = "BAR_TOP";
+    public static final String KEY_BAR_RIGHT = "BAR_RIGHT";
+    public static final String KEY_BAR_BOTTOM = "BAR_BOTTOM";
+
+    public static final String KEY_BUTTON_A = "BUTTON_A";
+    public static final String KEY_BUTTON_B = "BUTTON_B";
+
+    public static boolean sIsInit = false;
 
     public static float sHeight = 0;
 
@@ -40,17 +51,9 @@ public class ControllerDrawer extends BaseDrawer {
     private static final int BAR_LENGTH = 80;
     private static final int BUTTON_LENGTH = 200;
 
-    private static final String KEY_BAR_LEFT = "BAR_LEFT";
-    private static final String KEY_BAR_TOP = "BAR_TOP";
-    private static final String KEY_BAR_RIGHT = "BAR_RIGHT";
-    private static final String KEY_BAR_BOTTOM = "BAR_BOTTOM";
-
-    private static final String KEY_BUTTON_A = "BUTTON_A";
-    private static final String KEY_BUTTON_B = "BUTTON_B";
-
     private static final HashMap<String, Integer> sKeyMap = new HashMap<String, Integer>();
 
-    private static boolean sIsInit = false;
+    private static KeyListener sListener = null;
 
     private static float sTop = 0;
     private static float sBarWidth = 0;
@@ -72,8 +75,6 @@ public class ControllerDrawer extends BaseDrawer {
 
     private static Paint sButtonBPaint = null;
     private static Paint sButtonAPaint = null;
-
-    private static MediaPlayer sSeJump = null;
 
     private static ControllerDrawer instance = new ControllerDrawer();
 
@@ -145,10 +146,6 @@ public class ControllerDrawer extends BaseDrawer {
         sButtonBPaint = null;
         sButtonAPaint = null;
 
-        if (sSeJump != null) {
-            sSeJump.release();
-        }
-
         sIsInit = false;
     }
 
@@ -209,24 +206,36 @@ public class ControllerDrawer extends BaseDrawer {
 
             if (sRectBarLeft.contains(event.getX(idx), event.getY(idx))) {
                 if (sKeyMap.get(KEY_BAR_LEFT) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_LEFT);
+                    }
                     sIsPressedLeft = true;
                     sKeyMap.put(KEY_BAR_LEFT, id);
                 }
             }
             if (sRectBarTop.contains(event.getX(idx), event.getY(idx))) {
                 if (sKeyMap.get(KEY_BAR_TOP) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_TOP);
+                    }
                     sIsPressedTop = true;
                     sKeyMap.put(KEY_BAR_TOP, id);
                 }
             }
             if (sRectBarRight.contains(event.getX(idx), event.getY(idx))) {
                 if (sKeyMap.get(KEY_BAR_RIGHT) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_RIGHT);
+                    }
                     sIsPressedRight = true;
                     sKeyMap.put(KEY_BAR_RIGHT, id);
                 }
             }
             if (sRectBarBottom.contains(event.getX(idx), event.getY(idx))) {
                 if (sKeyMap.get(KEY_BAR_BOTTOM) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_BOTTOM);
+                    }
                     sIsPressedBottom = true;
                     sKeyMap.put(KEY_BAR_BOTTOM, id);
                 }
@@ -234,14 +243,17 @@ public class ControllerDrawer extends BaseDrawer {
 
             if (sRectButtonB.contains(event.getX(idx), event.getY(idx))) {
                 if (sKeyMap.get(KEY_BUTTON_B) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_B);
+                    }
                     sIsPressedB = true;
                     sKeyMap.put(KEY_BUTTON_B, id);
                 }
             }
             if (sRectButtonA.contains(event.getX(idx), event.getY(idx))) {
                 if (sKeyMap.get(KEY_BUTTON_A) == null) {
-                    if (!sSeJump.isPlaying()) {
-                        sSeJump.start();
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_A);
                     }
                     sIsPressedA = true;
                     sKeyMap.put(KEY_BUTTON_A, id);
@@ -256,6 +268,9 @@ public class ControllerDrawer extends BaseDrawer {
 
                 if (sKeyMap.get(KEY_BAR_LEFT) == null
                         && sRectBarLeft.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_LEFT);
+                    }
                     sIsPressedLeft = true;
                     sKeyMap.put(KEY_BAR_LEFT, pid);
                 } else if (sKeyMap.get(KEY_BAR_LEFT) != null && sKeyMap.get(KEY_BAR_LEFT) == pid
@@ -266,6 +281,9 @@ public class ControllerDrawer extends BaseDrawer {
 
                 if (sKeyMap.get(KEY_BAR_TOP) == null
                         && sRectBarTop.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_TOP);
+                    }
                     sIsPressedTop = true;
                     sKeyMap.put(KEY_BAR_TOP, pid);
                 } else if (sKeyMap.get(KEY_BAR_TOP) != null && sKeyMap.get(KEY_BAR_TOP) == pid
@@ -276,6 +294,9 @@ public class ControllerDrawer extends BaseDrawer {
 
                 if (sKeyMap.get(KEY_BAR_RIGHT) == null
                         && sRectBarRight.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_RIGHT);
+                    }
                     sIsPressedRight = true;
                     sKeyMap.put(KEY_BAR_RIGHT, pid);
                 } else if (sKeyMap.get(KEY_BAR_RIGHT) != null && sKeyMap.get(KEY_BAR_RIGHT) == pid
@@ -291,12 +312,18 @@ public class ControllerDrawer extends BaseDrawer {
                 } else if (sKeyMap.get(KEY_BAR_BOTTOM) != null
                         && sKeyMap.get(KEY_BAR_BOTTOM) == pid
                         && !sRectBarBottom.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_BOTTOM);
+                    }
                     sIsPressedBottom = false;
                     sKeyMap.remove(KEY_BAR_BOTTOM);
                 }
 
                 if (sKeyMap.get(KEY_BUTTON_B) == null
                         && sRectButtonB.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_B);
+                    }
                     sIsPressedB = true;
                     sKeyMap.put(KEY_BUTTON_B, pid);
                 } else if (sKeyMap.get(KEY_BUTTON_B) != null && sKeyMap.get(KEY_BUTTON_B) == pid
@@ -307,8 +334,8 @@ public class ControllerDrawer extends BaseDrawer {
 
                 if (sKeyMap.get(KEY_BUTTON_A) == null
                         && sRectButtonA.contains(event.getX(i), event.getY(i))) {
-                    if (!sSeJump.isPlaying()) {
-                        sSeJump.start();
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_A);
                     }
                     sIsPressedA = true;
                     sKeyMap.put(KEY_BUTTON_A, pid);
@@ -328,8 +355,20 @@ public class ControllerDrawer extends BaseDrawer {
         return true;
     }
 
+    public static void setKeyListener(KeyListener listener) {
+        sListener = listener;
+    }
+
     private void init(Context context) {
         Log.v(TAG, "init");
+
+        sIsPressedLeft = false;
+        sIsPressedTop = false;
+        sIsPressedRight = false;
+        sIsPressedBottom = false;
+
+        sIsPressedA = false;
+        sIsPressedB = false;
 
         if (sBarLeftPaint == null) {
             sBarLeftPaint = new Paint();
@@ -355,10 +394,6 @@ public class ControllerDrawer extends BaseDrawer {
         if (sButtonAPaint == null) {
             sButtonAPaint = new Paint();
             sButtonAPaint.setColor(Color.DKGRAY);
-        }
-
-        if (sSeJump == null) {
-            sSeJump = MediaPlayer.create(context, R.raw.jump);
         }
 
         sHeight = HEIGHT * MainSurfaceView.sScale;
