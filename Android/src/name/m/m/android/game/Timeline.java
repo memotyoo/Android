@@ -15,9 +15,12 @@ public class Timeline {
     /** 開始時間 (ミリ秒)。 */
     private final long mStart;
 
+    /** 強制終了フラグ。 */
+    private boolean mIsForceFinish = false;
+
     /**
      * コンストラクタ。
-     * 
+     *
      * @param length 全体時間 (ミリ秒)。
      */
     public Timeline(long length) {
@@ -27,7 +30,7 @@ public class Timeline {
 
     /**
      * 経過時間を取得する。
-     * 
+     *
      * @return 経過時間 (ミリ秒)。
      */
     public long getTime() {
@@ -35,11 +38,18 @@ public class Timeline {
     }
 
     /**
+     * 強制終了する。
+     */
+    public void forceFinish() {
+        mIsForceFinish = true;
+    }
+
+    /**
      * 終了したかを返す。
-     * 
+     *
      * @return 全体時間を経過していれば TRUE。
      */
     public boolean isFinished() {
-        return mLength > 0 ? getTime() > mLength : false;
+        return mIsForceFinish || mLength > 0 ? getTime() > mLength : false;
     }
 }

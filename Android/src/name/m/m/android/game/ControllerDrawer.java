@@ -4,21 +4,44 @@
 // Last updated: [2012/05/21]
 package name.m.m.android.game;
 
-import name.m.m.android.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.util.HashMap;
+
 /**
- * 
+ * コントローラ描画クラス。
  */
 public class ControllerDrawer extends BaseDrawer {
+
+    public interface KeyListener {
+        public void onDown(String key);
+    }
+
+    public static final String KEY_BAR_LEFT = "BAR_LEFT";
+    public static final String KEY_BAR_TOP = "BAR_TOP";
+    public static final String KEY_BAR_RIGHT = "BAR_RIGHT";
+    public static final String KEY_BAR_BOTTOM = "BAR_BOTTOM";
+
+    public static final String KEY_BUTTON_A = "BUTTON_A";
+    public static final String KEY_BUTTON_B = "BUTTON_B";
+
+    public static boolean sIsInit = false;
+
+    public static float sHeight = 0;
+
+    public static boolean sIsPressedLeft = false;
+    public static boolean sIsPressedTop = false;
+    public static boolean sIsPressedRight = false;
+    public static boolean sIsPressedBottom = false;
+
+    public static boolean sIsPressedA = false;
+    public static boolean sIsPressedB = false;
 
     /** タグ。 */
     private static final String TAG = ControllerDrawer.class.getSimpleName();
@@ -28,29 +51,30 @@ public class ControllerDrawer extends BaseDrawer {
     private static final int BAR_LENGTH = 80;
     private static final int BUTTON_LENGTH = 200;
 
-    private float mHeight = 0;
-    private float mTop = 0;
-    private float mBarWidth = 0;
-    private float mBarLength = 0;
-    private float mButtonLength = 0;
+    private static final HashMap<String, Integer> sKeyMap = new HashMap<String, Integer>();
 
-    private RectF mRectBarLeft = null;
-    private RectF mRectBarRight = null;
-    private RectF mRectBarTop = null;
-    private RectF mRectBarBottom = null;
+    private static KeyListener sListener = null;
 
-    private Paint mBarLeftPaint = null;
-    private Paint mBarTopPaint = null;
-    private Paint mBarRightPaint = null;
-    private Paint mBarBottomPaint = null;
+    private static float sTop = 0;
+    private static float sBarWidth = 0;
+    private static float sBarLength = 0;
+    private static float sButtonLength = 0;
 
-    private RectF mRectButtonB = null;
-    private RectF mRectButtonA = null;
+    private static RectF sRectBarLeft = null;
+    private static RectF sRectBarRight = null;
+    private static RectF sRectBarTop = null;
+    private static RectF sRectBarBottom = null;
 
-    private Paint mButtonBPaint = null;
-    private Paint mButtonAPaint = null;
+    private static Paint sBarLeftPaint = null;
+    private static Paint sBarTopPaint = null;
+    private static Paint sBarRightPaint = null;
+    private static Paint sBarBottomPaint = null;
 
-    private MediaPlayer mSeJump = null;
+    private static RectF sRectButtonB = null;
+    private static RectF sRectButtonA = null;
+
+    private static Paint sButtonBPaint = null;
+    private static Paint sButtonAPaint = null;
 
     private static ControllerDrawer instance = new ControllerDrawer();
 
@@ -63,82 +87,66 @@ public class ControllerDrawer extends BaseDrawer {
 
     @Override
     protected void draw(Context context, Canvas c) {
+        if (!sIsInit) {
+            init(context);
+            return;
+        }
 
         final Paint paint = new Paint();
         paint.setColor(Color.WHITE);
-        c.drawRect(0, mTop, MainSurfaceView.sWidth, MainSurfaceView.sHeight, paint);
+        c.drawRect(0, sTop, MainSurfaceView.sWidth, MainSurfaceView.sHeight, paint);
 
-        if (mBarLeftPaint == null) {
-            mBarLeftPaint = new Paint();
-            mBarLeftPaint.setColor(Color.DKGRAY);
-        }
-        if (mBarTopPaint == null) {
-            mBarTopPaint = new Paint();
-            mBarTopPaint.setColor(Color.DKGRAY);
-        }
-        if (mBarRightPaint == null) {
-            mBarRightPaint = new Paint();
-            mBarRightPaint.setColor(Color.DKGRAY);
-        }
-        if (mBarBottomPaint == null) {
-            mBarBottomPaint = new Paint();
-            mBarBottomPaint.setColor(Color.DKGRAY);
-        }
+        sBarLeftPaint.setColor(sIsPressedLeft ? Color.LTGRAY : Color.DKGRAY);
+        sBarTopPaint.setColor(sIsPressedTop ? Color.LTGRAY : Color.DKGRAY);
+        sBarRightPaint.setColor(sIsPressedRight ? Color.LTGRAY : Color.DKGRAY);
+        sBarBottomPaint.setColor(sIsPressedBottom ? Color.LTGRAY : Color.DKGRAY);
 
-        c.drawRect(mRectBarLeft, mBarLeftPaint);
-        c.drawRect(mRectBarTop, mBarTopPaint);
-        c.drawRect(mRectBarRight, mBarRightPaint);
-        c.drawRect(mRectBarBottom, mBarBottomPaint);
+        c.drawRect(sRectBarLeft, sBarLeftPaint);
+        c.drawRect(sRectBarTop, sBarTopPaint);
+        c.drawRect(sRectBarRight, sBarRightPaint);
+        c.drawRect(sRectBarBottom, sBarBottomPaint);
 
-        if (mButtonBPaint == null) {
-            mButtonBPaint = new Paint();
-            mButtonBPaint.setColor(Color.DKGRAY);
-        }
-        if (mButtonAPaint == null) {
-            mButtonAPaint = new Paint();
-            mButtonAPaint.setColor(Color.DKGRAY);
-        }
+        sButtonBPaint.setColor(sIsPressedB ? Color.LTGRAY : Color.DKGRAY);
+        sButtonAPaint.setColor(sIsPressedA ? Color.LTGRAY : Color.DKGRAY);
 
-        c.drawRect(mRectButtonB, mButtonBPaint);
-        c.drawRect(mRectButtonA, mButtonAPaint);
+        c.drawRect(sRectButtonB, sButtonBPaint);
+        c.drawRect(sRectButtonA, sButtonAPaint);
 
-        if (mSeJump == null) {
-            mSeJump = MediaPlayer.create(context, R.raw.jump);
-        }
     }
 
     @Override
     protected void onChanged() {
         Log.v(TAG, "onChanged");
-
-        mHeight = HEIGHT * MainSurfaceView.sScale;
-        mTop = MainSurfaceView.sHeight - mHeight;
-
-        mBarWidth = BAR_WIDTH * MainSurfaceView.sScale;
-        mBarLength = BAR_LENGTH * MainSurfaceView.sScale;
-
-        mRectBarLeft = new RectF(0, mTop + mHeight / 2 - mBarWidth / 2, mBarLength, mTop + mHeight
-                / 2 + mBarWidth / 2);
-        mRectBarTop = new RectF(mBarLength, mTop, mBarLength + mBarWidth, mTop + mBarLength);
-        mRectBarRight = new RectF(mBarLength + mBarWidth, mTop + mHeight / 2 - mBarWidth / 2,
-                mBarLength + mBarWidth + mBarLength, mTop + mHeight / 2 + mBarWidth / 2);
-        mRectBarBottom = new RectF(mBarLength, mTop + mHeight / 2 + mBarWidth / 2, mBarLength
-                + mBarWidth, MainSurfaceView.sHeight);
-
-        mButtonLength = BUTTON_LENGTH * MainSurfaceView.sScale;
-
-        mRectButtonB = new RectF(MainSurfaceView.sWidth - 2 * mButtonLength - mButtonLength / 4,
-                mTop + (mHeight - mButtonLength) / 2, MainSurfaceView.sWidth - mButtonLength
-                        - mButtonLength / 4, MainSurfaceView.sHeight - (mHeight - mButtonLength)
-                        / 2);
-        mRectButtonA = new RectF(MainSurfaceView.sWidth - mButtonLength, mTop
-                + (mHeight - mButtonLength) / 2, MainSurfaceView.sWidth, MainSurfaceView.sHeight
-                - (mHeight - mButtonLength) / 2);
     }
 
     @Override
     protected void onDestroyed() {
         Log.v(TAG, "onDestroyed");
+
+        sKeyMap.clear();
+
+        sTop = 0;
+        sBarWidth = 0;
+        sBarLength = 0;
+        sButtonLength = 0;
+
+        sRectBarLeft = null;
+        sRectBarRight = null;
+        sRectBarTop = null;
+        sRectBarBottom = null;
+
+        sBarLeftPaint = null;
+        sBarTopPaint = null;
+        sBarRightPaint = null;
+        sBarBottomPaint = null;
+
+        sRectButtonB = null;
+        sRectButtonA = null;
+
+        sButtonBPaint = null;
+        sButtonAPaint = null;
+
+        sIsInit = false;
     }
 
     @Override
@@ -147,76 +155,272 @@ public class ControllerDrawer extends BaseDrawer {
         final int action = event.getAction();
         final int count = event.getPointerCount();
         final int mask = action & MotionEvent.ACTION_MASK;
+        final int idx = (action & MotionEvent.ACTION_POINTER_ID_MASK) >> MotionEvent.ACTION_POINTER_ID_SHIFT;
+        final int id = event.getPointerId(idx);
 
-        boolean isLeft = false;
-        boolean isTop = false;
-        boolean isRight = false;
-        boolean isBottom = false;
+        switch (mask) {
+        case MotionEvent.ACTION_UP:
+        case MotionEvent.ACTION_POINTER_UP:
 
-        boolean isB = false;
-        boolean isA = false;
-
-        Log.v("MM", "count: " + count);
-        for (int i = 0; i < count; i++) {
-            if (mRectBarLeft.contains(event.getX(i), event.getY(i))) {
-                if (mask == MotionEvent.ACTION_UP || mask == MotionEvent.ACTION_OUTSIDE) {
-                    isLeft = false;
-                } else {
-                    isLeft = true;
+            if (sRectBarLeft.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_LEFT) != null && sKeyMap.get(KEY_BAR_LEFT) == id) {
+                    sIsPressedLeft = false;
+                    sKeyMap.remove(KEY_BAR_LEFT);
                 }
             }
-            if (mRectBarTop.contains(event.getX(i), event.getY(i))) {
-                if (mask == MotionEvent.ACTION_UP || mask == MotionEvent.ACTION_OUTSIDE) {
-                    isTop = false;
-                } else {
-                    isTop = true;
+            if (sRectBarTop.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_TOP) != null && sKeyMap.get(KEY_BAR_TOP) == id) {
+                    sIsPressedTop = false;
+                    sKeyMap.remove(KEY_BAR_TOP);
                 }
             }
-            if (mRectBarRight.contains(event.getX(i), event.getY(i))) {
-                if (mask == MotionEvent.ACTION_UP || mask == MotionEvent.ACTION_OUTSIDE) {
-                    isRight = false;
-                } else {
-                    isRight = true;
+            if (sRectBarRight.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_RIGHT) != null && sKeyMap.get(KEY_BAR_RIGHT) == id) {
+                    sIsPressedRight = false;
+                    sKeyMap.remove(KEY_BAR_RIGHT);
                 }
             }
-            if (mRectBarBottom.contains(event.getX(i), event.getY(i))) {
-                if (mask == MotionEvent.ACTION_UP || mask == MotionEvent.ACTION_OUTSIDE) {
-                    isBottom = false;
-                } else {
-                    isBottom = true;
+            if (sRectBarBottom.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_BOTTOM) != null && sKeyMap.get(KEY_BAR_BOTTOM) == id) {
+                    sIsPressedBottom = false;
+                    sKeyMap.remove(KEY_BAR_BOTTOM);
                 }
             }
 
-            if (mRectButtonB.contains(event.getX(i), event.getY(i))) {
-                if (mask == MotionEvent.ACTION_UP || mask == MotionEvent.ACTION_OUTSIDE) {
-                    isB = false;
-                } else {
-                    isB = true;
+            if (sRectButtonB.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BUTTON_B) != null && sKeyMap.get(KEY_BUTTON_B) == id) {
+                    sIsPressedB = false;
+                    sKeyMap.remove(KEY_BUTTON_B);
                 }
             }
-            if (mRectButtonA.contains(event.getX(i), event.getY(i))) {
-                if (mask == MotionEvent.ACTION_UP || mask == MotionEvent.ACTION_OUTSIDE) {
-                    isA = false;
-                } else if (mask == MotionEvent.ACTION_DOWN) {
-                    if (!mSeJump.isPlaying()) {
-                        mSeJump.start();
+            if (sRectButtonA.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BUTTON_A) != null && sKeyMap.get(KEY_BUTTON_A) == id) {
+                    sIsPressedA = false;
+                    sKeyMap.remove(KEY_BUTTON_A);
+                }
+            }
+            break;
+
+        case MotionEvent.ACTION_DOWN:
+        case MotionEvent.ACTION_POINTER_DOWN:
+
+            if (sRectBarLeft.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_LEFT) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_LEFT);
                     }
-                    isA = true;
-                } else {
-                    isA = true;
+                    sIsPressedLeft = true;
+                    sKeyMap.put(KEY_BAR_LEFT, id);
                 }
             }
+            if (sRectBarTop.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_TOP) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_TOP);
+                    }
+                    sIsPressedTop = true;
+                    sKeyMap.put(KEY_BAR_TOP, id);
+                }
+            }
+            if (sRectBarRight.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_RIGHT) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_RIGHT);
+                    }
+                    sIsPressedRight = true;
+                    sKeyMap.put(KEY_BAR_RIGHT, id);
+                }
+            }
+            if (sRectBarBottom.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BAR_BOTTOM) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_BOTTOM);
+                    }
+                    sIsPressedBottom = true;
+                    sKeyMap.put(KEY_BAR_BOTTOM, id);
+                }
+            }
+
+            if (sRectButtonB.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BUTTON_B) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_B);
+                    }
+                    sIsPressedB = true;
+                    sKeyMap.put(KEY_BUTTON_B, id);
+                }
+            }
+            if (sRectButtonA.contains(event.getX(idx), event.getY(idx))) {
+                if (sKeyMap.get(KEY_BUTTON_A) == null) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_A);
+                    }
+                    sIsPressedA = true;
+                    sKeyMap.put(KEY_BUTTON_A, id);
+                }
+            }
+            break;
+
+        case MotionEvent.ACTION_MOVE:
+
+            for (int i = 0; i < count; i++) {
+                final int pid = event.getPointerId(i);
+
+                if (sKeyMap.get(KEY_BAR_LEFT) == null
+                        && sRectBarLeft.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_LEFT);
+                    }
+                    sIsPressedLeft = true;
+                    sKeyMap.put(KEY_BAR_LEFT, pid);
+                } else if (sKeyMap.get(KEY_BAR_LEFT) != null && sKeyMap.get(KEY_BAR_LEFT) == pid
+                        && !sRectBarLeft.contains(event.getX(i), event.getY(i))) {
+                    sIsPressedLeft = false;
+                    sKeyMap.remove(KEY_BAR_LEFT);
+                }
+
+                if (sKeyMap.get(KEY_BAR_TOP) == null
+                        && sRectBarTop.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_TOP);
+                    }
+                    sIsPressedTop = true;
+                    sKeyMap.put(KEY_BAR_TOP, pid);
+                } else if (sKeyMap.get(KEY_BAR_TOP) != null && sKeyMap.get(KEY_BAR_TOP) == pid
+                        && !sRectBarTop.contains(event.getX(i), event.getY(i))) {
+                    sIsPressedTop = false;
+                    sKeyMap.remove(KEY_BAR_TOP);
+                }
+
+                if (sKeyMap.get(KEY_BAR_RIGHT) == null
+                        && sRectBarRight.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_RIGHT);
+                    }
+                    sIsPressedRight = true;
+                    sKeyMap.put(KEY_BAR_RIGHT, pid);
+                } else if (sKeyMap.get(KEY_BAR_RIGHT) != null && sKeyMap.get(KEY_BAR_RIGHT) == pid
+                        && !sRectBarRight.contains(event.getX(i), event.getY(i))) {
+                    sIsPressedRight = false;
+                    sKeyMap.remove(KEY_BAR_RIGHT);
+                }
+
+                if (sKeyMap.get(KEY_BAR_BOTTOM) == null
+                        && sRectBarBottom.contains(event.getX(i), event.getY(i))) {
+                    sIsPressedBottom = true;
+                    sKeyMap.put(KEY_BAR_BOTTOM, pid);
+                } else if (sKeyMap.get(KEY_BAR_BOTTOM) != null
+                        && sKeyMap.get(KEY_BAR_BOTTOM) == pid
+                        && !sRectBarBottom.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BAR_BOTTOM);
+                    }
+                    sIsPressedBottom = false;
+                    sKeyMap.remove(KEY_BAR_BOTTOM);
+                }
+
+                if (sKeyMap.get(KEY_BUTTON_B) == null
+                        && sRectButtonB.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_B);
+                    }
+                    sIsPressedB = true;
+                    sKeyMap.put(KEY_BUTTON_B, pid);
+                } else if (sKeyMap.get(KEY_BUTTON_B) != null && sKeyMap.get(KEY_BUTTON_B) == pid
+                        && !sRectButtonB.contains(event.getX(i), event.getY(i))) {
+                    sIsPressedB = false;
+                    sKeyMap.remove(KEY_BUTTON_B);
+                }
+
+                if (sKeyMap.get(KEY_BUTTON_A) == null
+                        && sRectButtonA.contains(event.getX(i), event.getY(i))) {
+                    if (sListener != null) {
+                        sListener.onDown(KEY_BUTTON_A);
+                    }
+                    sIsPressedA = true;
+                    sKeyMap.put(KEY_BUTTON_A, pid);
+                } else if (sKeyMap.get(KEY_BUTTON_A) != null && sKeyMap.get(KEY_BUTTON_A) == pid
+                        && !sRectButtonA.contains(event.getX(i), event.getY(i))) {
+                    sIsPressedA = false;
+                    sKeyMap.remove(KEY_BUTTON_A);
+                }
+            }
+
+            break;
+
+        default:
+            break;
         }
 
-        mBarLeftPaint.setColor(isLeft ? Color.LTGRAY : Color.DKGRAY);
-        mBarTopPaint.setColor(isTop ? Color.LTGRAY : Color.DKGRAY);
-        mBarRightPaint.setColor(isRight ? Color.LTGRAY : Color.DKGRAY);
-        mBarBottomPaint.setColor(isBottom ? Color.LTGRAY : Color.DKGRAY);
-
-        mButtonBPaint.setColor(isB ? Color.LTGRAY : Color.DKGRAY);
-        mButtonAPaint.setColor(isA ? Color.LTGRAY : Color.DKGRAY);
-
         return true;
+    }
+
+    public static void setKeyListener(KeyListener listener) {
+        sListener = listener;
+    }
+
+    private void init(Context context) {
+        Log.v(TAG, "init");
+
+        sIsPressedLeft = false;
+        sIsPressedTop = false;
+        sIsPressedRight = false;
+        sIsPressedBottom = false;
+
+        sIsPressedA = false;
+        sIsPressedB = false;
+
+        if (sBarLeftPaint == null) {
+            sBarLeftPaint = new Paint();
+            sBarLeftPaint.setColor(Color.DKGRAY);
+        }
+        if (sBarTopPaint == null) {
+            sBarTopPaint = new Paint();
+            sBarTopPaint.setColor(Color.DKGRAY);
+        }
+        if (sBarRightPaint == null) {
+            sBarRightPaint = new Paint();
+            sBarRightPaint.setColor(Color.DKGRAY);
+        }
+        if (sBarBottomPaint == null) {
+            sBarBottomPaint = new Paint();
+            sBarBottomPaint.setColor(Color.DKGRAY);
+        }
+
+        if (sButtonBPaint == null) {
+            sButtonBPaint = new Paint();
+            sButtonBPaint.setColor(Color.DKGRAY);
+        }
+        if (sButtonAPaint == null) {
+            sButtonAPaint = new Paint();
+            sButtonAPaint.setColor(Color.DKGRAY);
+        }
+
+        sHeight = HEIGHT * MainSurfaceView.sScale;
+        sTop = MainSurfaceView.sHeight - sHeight;
+
+        sBarWidth = BAR_WIDTH * MainSurfaceView.sScale;
+        sBarLength = BAR_LENGTH * MainSurfaceView.sScale;
+
+        sRectBarLeft = new RectF(0, sTop + sHeight / 2 - sBarWidth / 2, sBarLength, sTop + sHeight
+                / 2 + sBarWidth / 2);
+        sRectBarTop = new RectF(sBarLength, sTop, sBarLength + sBarWidth, sTop + sBarLength);
+        sRectBarRight = new RectF(sBarLength + sBarWidth, sTop + sHeight / 2 - sBarWidth / 2,
+                sBarLength + sBarWidth + sBarLength, sTop + sHeight / 2 + sBarWidth / 2);
+        sRectBarBottom = new RectF(sBarLength, sTop + sHeight / 2 + sBarWidth / 2, sBarLength
+                + sBarWidth, MainSurfaceView.sHeight);
+
+        sButtonLength = BUTTON_LENGTH * MainSurfaceView.sScale;
+
+        sRectButtonB = new RectF(MainSurfaceView.sWidth - 2 * sButtonLength - sButtonLength / 4,
+                sTop + (sHeight - sButtonLength) / 2, MainSurfaceView.sWidth - sButtonLength
+                        - sButtonLength / 4, MainSurfaceView.sHeight - (sHeight - sButtonLength)
+                        / 2);
+        sRectButtonA = new RectF(MainSurfaceView.sWidth - sButtonLength, sTop
+                + (sHeight - sButtonLength) / 2, MainSurfaceView.sWidth, MainSurfaceView.sHeight
+                - (sHeight - sButtonLength) / 2);
+
+        sIsInit = true;
     }
 
 }

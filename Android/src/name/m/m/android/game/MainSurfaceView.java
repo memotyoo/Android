@@ -12,7 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
- * 
+ *
  */
 public class MainSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
 
@@ -27,7 +27,7 @@ public class MainSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     /** ビュー 高さ。 */
     public static int sHeight = 0;
     /** 表示倍率 */
-    public static float sScale = 1f;
+    public static float sScale = 1.0f;
 
     /** タグ。 */
     private static final String TAG = MainSurfaceView.class.getSimpleName();
@@ -109,9 +109,9 @@ public class MainSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
                 if (mIsDraw && sTimeline.isFinished()) {
                     if (mOnFinishedListener == null) {
-                        Log.w(TAG, "listener nof found");
+                        Log.w(TAG, "listener not found");
                     } else {
-                        Log.w(TAG, "bar chart finished");
+                        Log.w(TAG, "finished");
                         mOnFinishedListener.onFinished();
                     }
 
@@ -125,8 +125,17 @@ public class MainSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     /**
+     * 描画終了リスナをセットする。
+     *
+     * @param listener 描画終了リスナ。
+     */
+    public void setOnFinishedListener(OnFinishedListener listener) {
+        mOnFinishedListener = listener;
+    }
+
+    /**
      * 描画処理
-     * 
+     *
      * @param h サーフェースホルダ
      */
     private void doDraw(SurfaceHolder h) {

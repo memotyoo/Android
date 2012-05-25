@@ -42,7 +42,7 @@ public class MainDrawer {
 
     public boolean onTouchEvent(MotionEvent event) {
 
-        return getLayer03().onTouchEvent(event);
+        return getLayer02().onTouchEvent(event);
     }
 
     private BaseDrawer getLayer01() {
@@ -50,11 +50,12 @@ public class MainDrawer {
     }
 
     private BaseDrawer getLayer02() {
-        return TestDrawer.getInstance();
+        return ControllerDrawer.getInstance();
     }
 
     private BaseDrawer getLayer03() {
-        return ControllerDrawer.getInstance();
+        // return TestDrawer.getInstance();
+        return ActionDrawer.getInstance();
     }
 
 }

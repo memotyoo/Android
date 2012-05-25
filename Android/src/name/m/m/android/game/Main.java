@@ -1,5 +1,7 @@
 package name.m.m.android.game;
 
+import name.m.m.android.game.MainSurfaceView.OnFinishedListener;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -19,7 +21,6 @@ public class Main extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // wake lock
         // XXX: android.permission.WAKE_LOCK
         final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, TAG);
@@ -28,7 +29,15 @@ public class Main extends Activity {
             mWakeLock.acquire();
         }
 
-        setContentView(new MainSurfaceView(getApplicationContext()));
+        final MainSurfaceView v = new MainSurfaceView(getApplicationContext());
+        v.setOnFinishedListener(new OnFinishedListener() {
+            @Override
+            public void onFinished() {
+                finish();
+
+            }
+        });
+        setContentView(v);
     }
 
     @Override
